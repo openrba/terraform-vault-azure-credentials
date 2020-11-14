@@ -23,3 +23,8 @@ variable "vault_token_ttl" {
   type        = string
   default     = "768h"
 }
+
+variable "vault_address" {
+  description = "Address of Hashicorp Vault"
+  type        = string
+}
