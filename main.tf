@@ -1,6 +1,6 @@
 resource "vault_azure_secret_backend_role" "subscription_owner" {
   backend                     = var.azure_secret_backend_path
-  role                        = "role-terraform-azure-modtest-${var.subscription_name}"
+  role                        = "role-terraform-azure-${var.subscription_name}"
   ttl                         = 300
   max_ttl                     = 600
 
@@ -30,7 +30,7 @@ data "vault_policy_document" "subscription_owner" {
   }
 
   rule {
-    path         = "${vault_azure_secret_backend_role.subscription_owner.backend}/creds/modtest-${vault_azure_secret_backend_role.subscription_owner.role}"
+    path         = "${vault_azure_secret_backend_role.subscription_owner.backend}/creds/${vault_azure_secret_backend_role.subscription_owner.role}"
     capabilities = ["read"]
     description  = "Allow requesting Azure credentials from Vault"
   }
