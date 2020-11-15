@@ -3,8 +3,8 @@ variable "azure_secret_backend_path" {
   type        = string
 }
 
-variable "subscription_name" {
-  description = "subscription name (used in vault API url)"
+variable "workspace_name" {
+  description = "workspace name (used in vault API url)"
   type        = string
 }
 
