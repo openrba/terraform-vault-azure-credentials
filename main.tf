@@ -1,6 +1,6 @@
 resource "vault_azure_secret_backend_role" "subscription_owner" {
   backend                     = var.azure_secret_backend_path
-  role                        = "role-terraform-azure-${var.subscription_name}"
+  role                        = "role-terraform-azure-${var.workspace_name}"
   ttl                         = 7200
   max_ttl                     = 14400
 
@@ -37,7 +37,7 @@ data "vault_policy_document" "subscription_owner" {
 }
 
 resource "vault_policy" "subscription_owner" {
-  name   = "policy-terraform-azure-${var.subscription_name}"
+  name   = "policy-terraform-azure-${var.workspace_name}"
   policy = data.vault_policy_document.subscription_owner.hcl
 }
 
