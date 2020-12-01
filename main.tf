@@ -1,8 +1,8 @@
 resource "vault_azure_secret_backend_role" "subscription_owner" {
   backend                     = var.azure_secret_backend_path
   role                        = "role-terraform-azure-${var.subscription_name}"
-  ttl                         = 300
-  max_ttl                     = 600
+  ttl                         = 7200
+  max_ttl                     = 14400
 
   azure_roles {
     role_name = "Owner"
