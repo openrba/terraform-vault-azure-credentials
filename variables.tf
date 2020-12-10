@@ -18,6 +18,12 @@ variable "tenant_id" {
   type        = string
 }
 
+variable "vault_token_period" {
+  description = "Period for generated vault token"
+  type        = string
+  default     = "768h"
+}
+
 variable "vault_token_ttl" {
   description = "TTL for generated vault token"
   type        = string

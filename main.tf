@@ -44,5 +44,6 @@ resource "vault_policy" "subscription_owner" {
 resource "vault_token" "subscription_owner" {
   policies  = [vault_policy.subscription_owner.name]
   renewable = true
+  period    = var.vault_token_period
   ttl       = var.vault_token_ttl
 }
