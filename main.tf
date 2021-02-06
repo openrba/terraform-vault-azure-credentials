@@ -10,10 +10,10 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
   
   azure_roles {
-    role_name = "Terraform Enterprise Virtual Network Peering"
-    scope     = "/providers/Microsoft.Management/managementGroups/Risk"
+    role_id = var.custom_peering_role_id
+    scope   = "/providers/Microsoft.Management/managementGroups/Risk"
   }
-  
+
 }
 
 data "vault_policy_document" "subscription_owner" {
