@@ -10,8 +10,8 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
   
   azure_roles {
-    role_id = "Terraform Enterprise Custom Role"
-    scope   = "/providers/Microsoft.Management/managementGroups/Risk"
+    role_name = "Terraform Enterprise Custom Role"
+    scope     = "/providers/Microsoft.Management/managementGroups/Risk"
   }
 
 }
