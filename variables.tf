@@ -34,8 +34,3 @@ variable "vault_address" {
   description = "Address of Hashicorp Vault"
   type        = string
 }
-
-variable "custom_peering_role_id" {
-  description = "Role ID for the custom Terraform Enterprise Virtual Network peering role"
-  type        = string
-}
