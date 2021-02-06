@@ -1,3 +1,8 @@
+data "azurerm_role_definition" "custom_peering" {
+  name  = "Terraform Enterprise Virtual Network Peering"
+  scope = "/providers/Microsoft.Management/managementGroups/Risk"
+}
+
 resource "vault_azure_secret_backend_role" "subscription_owner" {
   backend                     = var.azure_secret_backend_path
   role                        = "role-terraform-azure-${var.workspace_name}"
@@ -10,7 +15,7 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
   
   azure_roles {
-    role_id = var.custom_peering_role_id
+    role_id = "Terraform Enterprise Virtual Network Peering"
     scope   = "/providers/Microsoft.Management/managementGroups/Risk"
   }
 
