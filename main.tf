@@ -1,3 +1,8 @@
+# us-dns-prod Owner over RISK MG
+locals{
+  scope = var.workspace_name == "us-dns-prod" ? "/providers/Microsoft.Management/managementGroups/Risk" : "/subscriptions/${var.subscription_id}"
+}
+
 resource "vault_azure_secret_backend_role" "subscription_owner" {
   backend                     = var.azure_secret_backend_path
   role                        = "role-terraform-azure-${var.workspace_name}"
@@ -6,7 +11,7 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
 
   azure_roles {
     role_name = "Owner"
-    scope     = "/subscriptions/${var.subscription_id}"
+    scope     = local.scope
   }
   
   azure_roles {
