@@ -34,3 +34,8 @@ variable "vault_address" {
   description = "Address of Hashicorp Vault"
   type        = string
 }
+
+variable "azuread_group_id" {
+  description = "Azure Active Directory Group ID"
+  type        = string
+}
