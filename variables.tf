@@ -35,7 +35,7 @@ variable "vault_address" {
   type        = string
 }
 
-variable "azuread_group_id" {
-  description = "Azure Active Directory Group ID"
+variable "azuread_group_name" {
+  description = "Azure Active Directory Group Name"
   type        = string
 }

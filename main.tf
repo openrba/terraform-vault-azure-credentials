@@ -20,7 +20,7 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
 
   azure_groups {
-    object_id = var.azuread_group_id
+    group_name = var.azuread_group_name
   }
 
 }
