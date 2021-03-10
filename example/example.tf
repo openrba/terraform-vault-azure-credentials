@@ -14,13 +14,6 @@ provider "azurerm" {
   features {}
 }
 
-##common variables
-variable "subscription_id" {
-  description = "Azure subscription ID"
-  type        = string
-  default     = ""
-}
-
 module "subscription" {
   source = "github.com/Azure-Terraform/terraform-azurerm-subscription-data.git?ref=v1.0.0"
   subscription_id = var.subscription_id
@@ -86,17 +79,29 @@ resource "vault_token" "subscription_owner" {
   renewable = true
   period    = var.vault_token_period
   ttl       = var.vault_token_ttl
-
-
-###Add token renew to update periodically
-  explicit_max_ttl = var.token_explicit_max_ttl
-
-  renew_min_lease = 43200
-  renew_increment = 86400
 }
 
 
-######
-output "vault_token_subscription_owner" {
-  value = vault_token.subscription_owner
+###### Vault token resource test#####
+
+resource "vault_policy" "test" {
+  name   = "policy-terraform-azure-test"
+  policy = <<EOF
+path "secret/*" { capabilities = [ "list" ] }
+EOF
+}
+
+resource "vault_token" "test" {
+  policies  = [vault_policy.test.name]
+  renewable = true
+  no_default_policy = true
+  no_parent = true
+  ttl       = "60s"
+  explicit_max_ttl = "1h"
+  display_name  ="test"
+  period   = 0
+
+  renew_min_lease = "10"
+  renew_increment = "30"
+
 }

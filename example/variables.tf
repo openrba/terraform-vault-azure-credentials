@@ -31,15 +31,10 @@ variable "vault_token_period" {
 variable "vault_token_ttl" {
   description = "TTL for generated vault token"
   type        = string
-  default     = "768h"
+  default     = "60s"
 }
 
 variable "vault_address" {
   description = "Address of Hashicorp Vault"
   type        = string
-}
-
-variable "token_explicit_max_ttl" {
-  description = "The explicit max TTL of this token"
-  default     = "115200"
 }
