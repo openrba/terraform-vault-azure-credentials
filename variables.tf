@@ -18,6 +18,18 @@ variable "tenant_id" {
   type        = string
 }
 
+variable "ttl" {
+  description = "The default TTL for service principals generated using this role."
+  type        = number
+  default     = 7200
+}
+
+variable "max_ttl" {
+  description = "The maximum TTL for service principals generated using this role."
+  type        = number
+  default     = 43200
+}
+
 variable "vault_token_period" {
   description = "Period for generated vault token"
   type        = string

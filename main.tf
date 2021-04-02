@@ -6,8 +6,8 @@ locals {
 resource "vault_azure_secret_backend_role" "subscription_owner" {
   backend = var.azure_secret_backend_path
   role    = "role-terraform-azure-${var.workspace_name}"
-  ttl     = 7200
-  max_ttl = 14400
+  ttl     = var.ttl
+  max_ttl = var.max_ttl
 
   azure_roles {
     role_name = "Owner"
