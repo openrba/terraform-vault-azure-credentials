@@ -15,8 +15,13 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
 
   azure_roles {
-    role_name = "Terraform Enterprise Custom Role"
+    role_name = "Terraform Enterprise Network Management Role"
     scope     = "/providers/Microsoft.Management/managementGroups/Risk"
+  }
+
+  azure_roles {
+    role_name = "Terraform Enterprise Shared Image Gallery Role"
+    scope     = "/subscriptions/ed5e2254-5d87-4255-b70e-1b5eba509f73" # us-sharedimages-prod
   }
 
   azure_groups {
