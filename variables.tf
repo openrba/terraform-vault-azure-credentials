@@ -51,3 +51,15 @@ variable "azuread_group_name" {
   description = "Azure Active Directory Group Name"
   type        = string
 }
+
+variable "root_management_group" { 
+  description = "Root management group to allow network peering"
+  type = string
+  default = "RISK"
+}
+
+variable "image_gallery_subscription_id" {
+  description = "Azure Shared Image Gallery Subscription ID"
+  type = string
+  default = "ed5e2254-5d87-4255-b70e-1b5eba509f73" # us-sharedimages-prod
+}
