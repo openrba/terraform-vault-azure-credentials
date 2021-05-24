@@ -35,6 +35,18 @@ data "vault_policy_document" "subscription_owner" {
   }
 
   rule {
+    path         = "auth/token/lookup-accessor"
+    capabilities = ["read"]
+    description  = "Allow a token to lookup about itself"
+  }
+
+  rule {
+    path         = "auth/token/revoke-accessor"
+    capabilities = ["update"]
+    description  = "Allow a token to revoke that should no longer exist"
+  }
+
+  rule {
     path         = "${vault_azure_secret_backend_role.subscription_owner.backend}/config"
     capabilities = ["read"]
     description  = "Read Azure secrets backend config"

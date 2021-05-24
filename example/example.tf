@@ -57,6 +57,18 @@ data "vault_policy_document" "subscription_owner" {
   }
 
   rule {
+    path         = "auth/token/lookup-accessor"
+    capabilities = ["read"]
+    description  = "Allow a token to lookup about itself"
+  }
+
+  rule {
+    path         = "auth/token/revoke-accessor"
+    capabilities = ["update"]
+    description  = "Allow a token to revoke that should no longer exist"
+  }
+
+  rule {
     path         = "${vault_azure_secret_backend_role.subscription_owner.backend}/config"
     capabilities = ["read"]
     description  = "Read Azure secrets backend config"
@@ -79,29 +91,4 @@ resource "vault_token" "subscription_owner" {
   renewable = true
   period    = var.vault_token_period
   ttl       = var.vault_token_ttl
-}
-
-
-###### Vault token resource test#####
-
-resource "vault_policy" "test" {
-  name   = "policy-terraform-azure-test"
-  policy = <<EOF
-path "secret/*" { capabilities = [ "list" ] }
-EOF
-}
-
-resource "vault_token" "test" {
-  policies  = [vault_policy.test.name]
-  renewable = true
-  no_default_policy = true
-  no_parent = true
-  ttl       = "60s"
-  explicit_max_ttl = "1h"
-  display_name  ="test"
-  period   = 0
-
-  renew_min_lease = "10"
-  renew_increment = "30"
-
 }
