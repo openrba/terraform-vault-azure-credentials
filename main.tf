@@ -37,7 +37,7 @@ data "vault_policy_document" "subscription_owner" {
   rule {
     path         = "auth/token/lookup-accessor"
     capabilities = ["read"]
-    description  = "Allow a token to lookup about itself"
+    description  = "Allow a token to lookup about accessor"
   }
 
   rule {
