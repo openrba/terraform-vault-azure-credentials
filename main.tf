@@ -1,22 +1,31 @@
 # us-dns-prod Owner over RISK MG
-locals{
+locals {
   scope = var.workspace_name == "us-dns-prod" ? "/providers/Microsoft.Management/managementGroups/Risk" : "/subscriptions/${var.subscription_id}"
 }
 
 resource "vault_azure_secret_backend_role" "subscription_owner" {
-  backend                     = var.azure_secret_backend_path
-  role                        = "role-terraform-azure-${var.workspace_name}"
-  ttl                         = 7200
-  max_ttl                     = 14400
+  backend = var.azure_secret_backend_path
+  role    = "role-terraform-azure-${var.workspace_name}"
+  ttl     = var.ttl
+  max_ttl = var.max_ttl
 
   azure_roles {
     role_name = "Owner"
     scope     = local.scope
   }
-  
+
   azure_roles {
-    role_name = "Terraform Enterprise Custom Role"
-    scope     = "/providers/Microsoft.Management/managementGroups/Risk"
+    role_name = "Terraform Enterprise Network Management Role"
+    scope     = "/providers/Microsoft.Management/managementGroups/${var.root_management_group}"
+  }
+
+  azure_roles {
+    role_name = "Terraform Enterprise Shared Image Gallery Role"
+    scope     = "/subscriptions/${var.image_gallery_subscription_id}"
+  }
+
+  azure_groups {
+    group_name = var.azuread_group_name
   }
 
 }
