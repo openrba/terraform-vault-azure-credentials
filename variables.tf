@@ -21,13 +21,13 @@ variable "tenant_id" {
 variable "ttl" {
   description = "The default TTL for service principals generated using this role."
   type        = number
-  default     = "60s"
+  default     = 300
 }
 
 variable "max_ttl" {
   description = "The maximum TTL for service principals generated using this role."
   type        = number
-  default     = "1h"
+  default     = 3600
 }
 
 variable "vault_token_period" {
