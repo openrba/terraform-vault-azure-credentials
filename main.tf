@@ -56,6 +56,12 @@ data "vault_policy_document" "subscription_owner" {
   }
 
   rule {
+    path         = "auth/token/renew-self"
+    capabilities = ["update"]
+    description  = "Allow a token to renew itself"
+  }
+
+  rule {
     path         = "${vault_azure_secret_backend_role.subscription_owner.backend}/config"
     capabilities = ["read"]
     description  = "Read Azure secrets backend config"
