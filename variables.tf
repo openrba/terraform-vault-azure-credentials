@@ -27,19 +27,19 @@ variable "ttl" {
 variable "max_ttl" {
   description = "The maximum TTL for service principals generated using this role."
   type        = number
-  default     = 3600
+  default     = 300
 }
 
 variable "vault_token_period" {
   description = "Period for generated vault token"
   type        = string
-  default     = "0"
+  default     = "360"
 }
 
 variable "vault_token_ttl" {
   description = "TTL for generated vault token"
   type        = string
-  default     = "60s"
+  default     = "30"
 }
 
 variable "vault_address" {
@@ -52,14 +52,14 @@ variable "azuread_group_name" {
   type        = string
 }
 
-variable "root_management_group" { 
+variable "root_management_group" {
   description = "Root management group to allow network peering"
-  type = string
-  default = "RISK"
+  type        = string
+  default     = "RISK"
 }
 
 variable "image_gallery_subscription_id" {
   description = "Azure Shared Image Gallery Subscription ID"
-  type = string
-  default = "ed5e2254-5d87-4255-b70e-1b5eba509f73" # us-sharedimages-prod
+  type        = string
+  default     = "ed5e2254-5d87-4255-b70e-1b5eba509f73" # us-sharedimages-prod
 }

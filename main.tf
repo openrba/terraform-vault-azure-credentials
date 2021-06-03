@@ -42,7 +42,7 @@ data "vault_policy_document" "subscription_owner" {
     capabilities = ["read"]
     description  = "Allow a token to get information about itself"
   }
-
+  /*
   rule {
     path         = "auth/token/lookup-accessor"
     capabilities = ["read"]
@@ -59,7 +59,7 @@ data "vault_policy_document" "subscription_owner" {
     path         = "auth/token/renew-self"
     capabilities = ["update"]
     description  = "Allow a token to renew itself"
-  }
+  }*/
 
   rule {
     path         = "${vault_azure_secret_backend_role.subscription_owner.backend}/config"
@@ -82,6 +82,12 @@ resource "vault_policy" "subscription_owner" {
 resource "vault_token" "subscription_owner" {
   policies  = [vault_policy.subscription_owner.name]
   renewable = true
-  period    = var.vault_token_period
-  ttl       = var.vault_token_ttl
+
+  no_default_policy = true
+  no_parent         = true
+  period            = var.vault_token_period
+  ttl               = var.vault_token_ttl
+
+  renew_min_lease = 10
+  renew_increment = 30
 }
