@@ -33,13 +33,13 @@ variable "max_ttl" {
 variable "vault_token_period" {
   description = "Period for generated vault token"
   type        = string
-  default     = "768h"
+  default     = "300"
 }
 
 variable "vault_token_ttl" {
   description = "TTL for generated vault token"
   type        = string
-  default     = "768h"
+  default     = "300"
 }
 
 variable "vault_address" {
