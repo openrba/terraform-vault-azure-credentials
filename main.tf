@@ -42,10 +42,16 @@ data "vault_policy_document" "subscription_owner" {
     capabilities = ["read"]
     description  = "Allow a token to get information about itself"
   }
-  /*
+/*
+  rule {
+    path         = "secret/*"
+    capabilities = ["list"]
+    description  = "Allow a token to test renew"
+  }
+  
   rule {
     path         = "auth/token/lookup-accessor"
-    capabilities = ["read"]
+    capabilities = ["update"]
     description  = "Allow a token to lookup about accessor"
   }
 
@@ -88,6 +94,6 @@ resource "vault_token" "subscription_owner" {
   period            = var.vault_token_period
   ttl               = var.vault_token_ttl
 
-  renew_min_lease = 10
-  renew_increment = 30
+ # renew_min_lease = 10
+ # renew_increment = 30
 }
