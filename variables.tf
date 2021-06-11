@@ -65,7 +65,7 @@ variable "image_gallery_subscription_id" {
 }
 
 variable "storage_blob_subscription_id" {
-  description = "Test role for storage account issue"
+  description = "Azure terraform prod subscription ID to allow access to storage containers and blobs"
   type        = string
-  default     = "b30ec755-1667-45bd-97ba-900e948077d9" # us-terraform-nonprod
+  default     = "debc4966-2669-4fa7-9bd9-c4cdb08aed9f" # us-terraform-prod
 }
