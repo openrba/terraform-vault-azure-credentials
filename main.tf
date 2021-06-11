@@ -24,6 +24,11 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
     scope     = "/subscriptions/${var.image_gallery_subscription_id}"
   }
 
+  azure_roles {
+    role_name = "Storage Blob Data Contributor"
+    scope     = "/subscriptions/${var.storage_blob_subscription_id}"
+  }
+
   azure_groups {
     group_name = var.azuread_group_name
   }
