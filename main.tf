@@ -15,6 +15,11 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
 
   azure_roles {
+    role_name = "Storage Blob Data Contributor"
+    scope     = local.scope
+  }
+
+  azure_roles {
     role_name = "Terraform Enterprise Network Management Role"
     scope     = "/providers/Microsoft.Management/managementGroups/${var.root_management_group}"
   }
@@ -22,11 +27,6 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   azure_roles {
     role_name = "Terraform Enterprise Shared Image Gallery Role"
     scope     = "/subscriptions/${var.image_gallery_subscription_id}"
-  }
-
-  azure_roles {
-    role_name = "Storage Blob Data Contributor"
-    scope     = "/subscriptions/${var.storage_blob_subscription_id}"
   }
 
   azure_groups {
