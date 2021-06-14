@@ -63,9 +63,3 @@ variable "image_gallery_subscription_id" {
   type        = string
   default     = "ed5e2254-5d87-4255-b70e-1b5eba509f73" # us-sharedimages-prod
 }
-
-variable "storage_blob_subscription_id" {
-  description = "Azure terraform prod subscription ID to allow access to storage containers and blobs"
-  type        = string
-  default     = "debc4966-2669-4fa7-9bd9-c4cdb08aed9f" # us-terraform-prod
-}
