@@ -1,6 +1,6 @@
 # us-dns-prod Owner over RISK MG
 locals {
-  scope = var.workspace_name == "us-dns-prod" ? "/providers/Microsoft.Management/managementGroups/Risk" : "/subscriptions/${var.subscription_id}"
+  scope = var.workspace_name == "us-dns-prod" || var.workspace_name == "us-securitypolicy-dev" ? "/providers/Microsoft.Management/managementGroups/Risk" : "/subscriptions/${var.subscription_id}"
 }
 
 resource "vault_azure_secret_backend_role" "subscription_owner" {
