@@ -15,7 +15,7 @@ resource "vault_azure_secret_backend_role" "subscription_owner" {
   }
 
   azure_roles {
-    role_name = "Storage Blob Data Contributor"
+    role_name = "Storage Blob Data Owner"
     scope     = local.scope
   }
 
